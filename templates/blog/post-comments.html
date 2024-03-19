@@ -23,11 +23,11 @@
 {% row "mt-4" %}
     {% col %}
         <h4>Add Comment</h4>
-        <form method="post" action=".">
+        <form >
             {% csrf_token %}
            {%  crispy comment_form %}
             <p>
-                <button type="submit" class="btn btn-primary">Submit</button>
+              
             </p>
         </form>
     {% endcol %}
