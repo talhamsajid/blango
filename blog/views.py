@@ -9,11 +9,15 @@ from django.views.decorators.vary import vary_on_cookie
 
 logger = logging.getLogger(__name__)
 
+
+def get_ip(request):
+  from django.http import HttpResponse
+  return HttpResponse(request.META['REMOTE_ADDR'])
 # Create your views here.
 @cache_page(300)
 @vary_on_cookie
 def index(request):
-    posts = Post.objects.filter(published_at__lte=timezone.now())
+    posts = Post.objects.filter(published_at__lte=timezone.now()).select_related("author")
     logger.debug("Got %d posts", len(posts))
     return render(request, "blog/index.html", {"posts": posts})
 
