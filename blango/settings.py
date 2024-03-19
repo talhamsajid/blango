@@ -30,9 +30,19 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+SITE_ID = 1
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
 
 INSTALLED_APPS = [
-     'blango_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'blango_auth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
